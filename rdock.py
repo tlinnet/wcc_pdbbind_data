@@ -132,9 +132,10 @@ END_SECTION"""
 		for dockfile in dockfiles:
 			#dockfile = self.dockfile + "_%s"%i
 			#print(dockfile)
-			command = '%s -r %s -p dock.prm -n %s -i %s -o %s -s %s' % (self.rdock, self.customfile, self.dockruns/n, ligand, dockfile, random.randint(0,100000000))
-			f= os.tmpfile()
-			#f = tempfile.TemporaryFile()
+			command = '%s -r %s -p dock.prm -n %s -i %s -o %s -s %s' % (self.rdock, self.customfile, n, ligand, dockfile, random.randint(0,100000000))
+			#command = '%s -r %s -p dock.prm -n %s -i %s -o %s -s %s' % (self.rdock, self.customfile, self.dockruns/n, ligand, dockfile, random.randint(0,100000000))
+			#f= os.tmpfile()
+			f = tempfile.TemporaryFile()
 			p = subprocess.Popen(command.split(" "), stdout = f)
 			processes.append((p,f))
 		#Wait for processes to end in turn (secure all closed)
@@ -142,7 +143,7 @@ END_SECTION"""
 			p.wait()
 			if self.debug:
 				f.seek(0)
-				print(f.read())
+				print(f.read().decode("utf-8"))
 			f.close()
 
 		#Concatenate output
@@ -160,20 +161,28 @@ END_SECTION"""
 		command = ('sdrmsd %s %s -o %s')%(self.autoboxligand, self.dockfile + '.sd',self.dockfile + '_rmsd.sd')
 		self.execute_cmd(command)
 		#Move the new file back
+		# BUG
+		print("Here is a BUG")
 		command = "mv %s %s"%(self.dockfile + '_rmsd.sd', self.dockfile + '.sd')
 		os.system(command)
 		command = 'sdreport -cSCORE,RMSD %s'%(self.dockfile + '.sd')
 		#Load as a dataframe from a stringIO conversion of the output of the command
-		results = pd.DataFrame.from_csv(StringIO(unicode(self.execute_cmd(command)[0])))
+		#results = pd.DataFrame.from_csv(StringIO(unicode(self.execute_cmd(command)[0])))
+		results = pd.read_csv(StringIO(self.execute_cmd(command)[0].decode("utf-8")))
+
 		#use argmin of Scores to find best RMSD
-		best_rmsd = results.RMSD[results.SCORE.argmin()]
-		self.append_log("Best RMSD: %s\n"%best_rmsd )
+		#best_rmsd = results.RMSD[results.SCORE.argmin()]
+		best_rmsd = str(results.RMSD[results.SCORE.idxmin()])
+		best_rmsd_text = "Best RMSD: %s\n"%best_rmsd
+		best_rmsd_text_b = best_rmsd_text.encode()
+		self.append_log(best_rmsd_text_b)
 		return best_rmsd
 
 	def get_scores(self):
 		command = 'sdreport -cSCORE %s'%(self.dockfile + '.sd')
 		#Load as a dataframe from a stringIO conversion of the output of the command
-		results = pd.DataFrame.from_csv(StringIO(unicode(self.execute_cmd(command)[0])))
+		#results = pd.DataFrame.from_csv(StringIO(unicode(self.execute_cmd(command)[0])))
+		results = pd.read_csv(StringIO(self.execute_cmd(command)[0].decode("utf-8")))
 		return results.SCORE
 
 	def get_result_csv(self):

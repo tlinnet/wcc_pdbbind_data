@@ -13,13 +13,13 @@ rd.dockruns = 12
 
 rd.dock_parallel()
 
-#print(rd.get_best_rmsd())
+print(rd.get_best_rmsd())
 
-#print(rd.get_scores())
+print(rd.get_scores())
 
 #rd.pymol()
 
-#del rd 
+del rd 
 
 
 
