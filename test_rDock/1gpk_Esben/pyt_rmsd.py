@@ -10,3 +10,4 @@ min_index = results.SCORE.idxmin()
 best_rmsd = str(results.RMSD[min_index])
 best_rmsd_text = "Best RMSD: %s\n"%best_rmsd
 print(best_rmsd_text)
+print(results.SCORE)

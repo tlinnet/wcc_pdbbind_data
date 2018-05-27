@@ -39,6 +39,14 @@ drdc rbdock -i 1gpk_ligand.sd -o outdock_1gpk -r PRMFILE.prm -p dock.prm -n 50 |
 drdc sdrmsd 1gpk_ligand.sd outdock_1gpk.sd -o outdock_1gpk_rmsd.sd | tee log_03_rmsd.log
 ```
 
+Create the SCORE and RMSD in a file
+
 ```bash
 drdc sdreport -cSCORE,RMSD outdock_1gpk_rmsd.sd | tee log_04_score.log
+```
+
+Get the RMSD, from the lowest score, and list scores
+
+```bash
+drdc python pyt_rmsd.py
 ```
