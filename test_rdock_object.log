@@ -1,0 +1,268 @@
+RBT_PARAMETER_FILE_V1.00
+TITLE rDock_python_object_docking
+
+RECEPTOR_FILE 1gpk_rdock.mol2
+RECEPTOR_FLEX 3.0
+
+##################################################################
+### CAVITY DEFINITION: REFERENCE LIGAND METHOD
+##################################################################
+SECTION MAPPER
+    SITE_MAPPER RbtLigandSiteMapper
+    REF_MOL 1gpk_ligand.sd
+    RADIUS 6.0
+    SMALL_SPHERE 1.0
+    MIN_VOLUME 100
+    MAX_CAVITIES 1
+    VOL_INCR 0.0
+   GRIDSTEP 0.5
+END_SECTION
+
+
+#################################
+#CAVITY RESTRAINT PENALTY
+#################################
+SECTION CAVITY
+    SCORING_FUNCTION RbtCavityGridSF
+    WEIGHT 1.0
+END_SECTION
+rbcavity -r /tmp/tmp5e634r3d -was
+***********************************************
+The rDock program is licensed under GNU-LGPLv3.0. http://rdock.sourceforge.net/
+Executable:	rbdock ($Id: //depot/dev/client3/rdock/2013.1/src/exe/rbdock.cxx#4 $)
+Library:	libRbt.so/2013.1/901 2013/11/27
+RBT_ROOT:	/home/jovyan/rDock_2013.1_src
+RBT_HOME:	/home/jovyan
+Current dir:	/home/jovyan/work
+Date:		Sun May 27 11:38:57 2018
+***********************************************
+
+
+Command line args:
+ -i 1gpk_ligand.sd
+ -r /tmp/tmp5e634r3d
+ -p dock.prm
+ -o /tmp/tester_dock_0
+ -n 4
+ -s 24578487
+Reading polar hydrogens only from ligand SD file
+
+DOCKING PROTOCOL:
+/home/jovyan/rDock_2013.1_src/data/scripts/dock.prm
+Free docking (indexed VDW)
+
+RECEPTOR:
+/tmp/tmp5e634r3d
+rDock_python_object_docking
+
+DOCKING SITE
+Total volume 868.375 A^3
+Cavity #1	Size=6947 points; Vol=868.375 A^3; Min=(-5.5,58.5,55); Max=(9.5,73.5,71); Center=(2.65798,66.9702,64.3842); Extent=(15,15,16)
+
+
+No solvent
+
+------------- Terminate filter 0------------
+
+if (SCORE.NRUNS - 3 ) > 0 then
+	0.0 
+else
+	-1.0 
+end
+
+
+**************************************************
+RECORD #1
+**WARNING** RBT_MODEL_ERROR at ../src/lib/RbtMdlFileSource.cxx, line 412
+N26 makes too many bonds
+NAME:   LIGAND
+RANDOM_NUMBER_SEED:           24578487
+**WARNING** RBT_MODEL_ERROR at ../src/lib/RbtMdlFileSource.cxx, line 412
+N26 makes too many bonds
+
+END OF RUN
+
+***********************************************
+The rDock program is licensed under GNU-LGPLv3.0. http://rdock.sourceforge.net/
+Executable:	rbdock ($Id: //depot/dev/client3/rdock/2013.1/src/exe/rbdock.cxx#4 $)
+Library:	libRbt.so/2013.1/901 2013/11/27
+RBT_ROOT:	/home/jovyan/rDock_2013.1_src
+RBT_HOME:	/home/jovyan
+Current dir:	/home/jovyan/work
+Date:		Sun May 27 11:38:57 2018
+***********************************************
+
+
+Command line args:
+ -i 1gpk_ligand.sd
+ -r /tmp/tmp5e634r3d
+ -p dock.prm
+ -o /tmp/tester_dock_1
+ -n 4
+ -s 28093524
+Reading polar hydrogens only from ligand SD file
+
+DOCKING PROTOCOL:
+/home/jovyan/rDock_2013.1_src/data/scripts/dock.prm
+Free docking (indexed VDW)
+
+RECEPTOR:
+/tmp/tmp5e634r3d
+rDock_python_object_docking
+
+DOCKING SITE
+Total volume 868.375 A^3
+Cavity #1	Size=6947 points; Vol=868.375 A^3; Min=(-5.5,58.5,55); Max=(9.5,73.5,71); Center=(2.65798,66.9702,64.3842); Extent=(15,15,16)
+
+
+No solvent
+
+------------- Terminate filter 0------------
+
+if (SCORE.NRUNS - 3 ) > 0 then
+	0.0 
+else
+	-1.0 
+end
+
+
+**************************************************
+RECORD #1
+**WARNING** RBT_MODEL_ERROR at ../src/lib/RbtMdlFileSource.cxx, line 412
+N26 makes too many bonds
+NAME:   LIGAND
+RANDOM_NUMBER_SEED:           28093524
+**WARNING** RBT_MODEL_ERROR at ../src/lib/RbtMdlFileSource.cxx, line 412
+N26 makes too many bonds
+
+END OF RUN
+
+***********************************************
+The rDock program is licensed under GNU-LGPLv3.0. http://rdock.sourceforge.net/
+Executable:	rbdock ($Id: //depot/dev/client3/rdock/2013.1/src/exe/rbdock.cxx#4 $)
+Library:	libRbt.so/2013.1/901 2013/11/27
+RBT_ROOT:	/home/jovyan/rDock_2013.1_src
+RBT_HOME:	/home/jovyan
+Current dir:	/home/jovyan/work
+Date:		Sun May 27 11:38:57 2018
+***********************************************
+
+
+Command line args:
+ -i 1gpk_ligand.sd
+ -r /tmp/tmp5e634r3d
+ -p dock.prm
+ -o /tmp/tester_dock_2
+ -n 4
+ -s 42326159
+Reading polar hydrogens only from ligand SD file
+
+DOCKING PROTOCOL:
+/home/jovyan/rDock_2013.1_src/data/scripts/dock.prm
+Free docking (indexed VDW)
+
+RECEPTOR:
+/tmp/tmp5e634r3d
+rDock_python_object_docking
+
+DOCKING SITE
+Total volume 868.375 A^3
+Cavity #1	Size=6947 points; Vol=868.375 A^3; Min=(-5.5,58.5,55); Max=(9.5,73.5,71); Center=(2.65798,66.9702,64.3842); Extent=(15,15,16)
+
+
+No solvent
+
+------------- Terminate filter 0------------
+
+if (SCORE.NRUNS - 3 ) > 0 then
+	0.0 
+else
+	-1.0 
+end
+
+
+**************************************************
+RECORD #1
+**WARNING** RBT_MODEL_ERROR at ../src/lib/RbtMdlFileSource.cxx, line 412
+N26 makes too many bonds
+NAME:   LIGAND
+RANDOM_NUMBER_SEED:           42326159
+**WARNING** RBT_MODEL_ERROR at ../src/lib/RbtMdlFileSource.cxx, line 412
+N26 makes too many bonds
+
+END OF RUN
+
+***********************************************
+The rDock program is licensed under GNU-LGPLv3.0. http://rdock.sourceforge.net/
+Executable:	rbdock ($Id: //depot/dev/client3/rdock/2013.1/src/exe/rbdock.cxx#4 $)
+Library:	libRbt.so/2013.1/901 2013/11/27
+RBT_ROOT:	/home/jovyan/rDock_2013.1_src
+RBT_HOME:	/home/jovyan
+Current dir:	/home/jovyan/work
+Date:		Sun May 27 11:38:57 2018
+***********************************************
+
+
+Command line args:
+ -i 1gpk_ligand.sd
+ -r /tmp/tmp5e634r3d
+ -p dock.prm
+ -o /tmp/tester_dock_3
+ -n 4
+ -s 56346206
+Reading polar hydrogens only from ligand SD file
+
+DOCKING PROTOCOL:
+/home/jovyan/rDock_2013.1_src/data/scripts/dock.prm
+Free docking (indexed VDW)
+
+RECEPTOR:
+/tmp/tmp5e634r3d
+rDock_python_object_docking
+
+DOCKING SITE
+Total volume 868.375 A^3
+Cavity #1	Size=6947 points; Vol=868.375 A^3; Min=(-5.5,58.5,55); Max=(9.5,73.5,71); Center=(2.65798,66.9702,64.3842); Extent=(15,15,16)
+
+
+No solvent
+
+------------- Terminate filter 0------------
+
+if (SCORE.NRUNS - 3 ) > 0 then
+	0.0 
+else
+	-1.0 
+end
+
+
+**************************************************
+RECORD #1
+**WARNING** RBT_MODEL_ERROR at ../src/lib/RbtMdlFileSource.cxx, line 412
+N26 makes too many bonds
+NAME:   LIGAND
+RANDOM_NUMBER_SEED:           56346206
+**WARNING** RBT_MODEL_ERROR at ../src/lib/RbtMdlFileSource.cxx, line 412
+N26 makes too many bonds
+
+END OF RUN
+
+Here is a BUG
+0.735
+0    -39.420
+1    -38.821
+2    -37.163
+3    -37.626
+4    -36.523
+5    -39.004
+6    -39.216
+7    -37.484
+8    -40.426
+9    -37.028
+10   -37.297
+11   -19.111
+12   -38.867
+13   -39.287
+14   -39.461
+15   -35.072
+Name: SCORE, dtype: float64
