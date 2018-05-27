@@ -5,11 +5,11 @@ Library:	libRbt.so/2013.1/901 2013/11/27
 RBT_ROOT:	/home/jovyan/rDock_2013.1_src
 RBT_HOME:	/home/jovyan
 Current dir:	/home/jovyan/work
-Date:		Sun May 27 09:23:10 2018
+Date:		Sun May 27 11:52:35 2018
 ***********************************************
 
 Command line arguments:
--r dock.prm
+-r PRMFILE.prm
 -was
 -d
 
