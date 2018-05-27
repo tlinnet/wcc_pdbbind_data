@@ -4,8 +4,6 @@
 
 We try first the data from Esben.
 
-Then we will convert from the PDF file.
-
 # Procedure
 
 ## Make PRMFILE.prm file
