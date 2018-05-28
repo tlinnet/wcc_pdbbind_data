@@ -4,16 +4,19 @@
 OPTIND=1         # Reset in case getopts has been used previously in the shell.
 
 # Initialize our own variables:
-FORCE=0
+WFORCE=0
+EFORCE=0
 PDB=""
 
-while getopts "h?fp:" opt; do
+while getopts "h?wep:" opt; do
     case "$opt" in
     h|\?)
         echo "Trying to help:"
         exit 0
         ;;
-    f)  FORCE=1
+    w)  WFORCE=1
+        ;;
+    e)  EFORCE=1
         ;;
     p)  PDB=$OPTARG
         ;;
@@ -22,7 +25,7 @@ done
 shift $((OPTIND-1))
 [ "${1:-}" = "--" ] && shift
 
-echo "FORCE=$FORCE, PDB='$PDB', Leftovers: $@"
+echo "WFORCE=$WFORCE, EFORCE=$EFORCE, PDB='$PDB', Leftovers: $@"
 
 # Exit, if empty PDB id
 [[ -z $PDB ]] && echo "Please provide a PDB id" && exit 1
@@ -61,12 +64,14 @@ cd $CWD
 } 
 
 # Write pymol commands
-if [ ! -f ${PDBDIR}/${PYMFILE} ] || [ "$FORCE" == "1" ]; then
+if [ ! -f ${PDBDIR}/${PYMFILE} ] || [ "$WFORCE" == "1" ]; then
     write_pymol_cmd
 fi
 
 # Execute if PDB does not exists
-if [ ! -f ${PDBDIR}/01_${PDB}.pdb ] || [ "$FORCE" == "1" ]; then
+if [ ! -f ${PDBDIR}/01_${PDB}.pdb ] || [ "$EFORCE" == "1" ]; then
+    echo "Executing: ${SHFILE}"
+    echo ""
     cd $PDBDIR
     ./${SHFILE}
     cd $CWD
