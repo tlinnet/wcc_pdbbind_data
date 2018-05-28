@@ -48,7 +48,18 @@ cd $PDBDIR
 cat <<EOF > $PYMFILE
 load ${PDB}_protein.pdb
 
-remove solvent
+#Remove alternates
+cmd.remove("not alt +A")
+#cmd.valence("guess", selection1=${PDB}_protein)
+
+#Prepare molecules with polar hydrogens:
+cmd.h_add("elem O or elem N or elem S")
+
+#Delete Waters and Heteroatoms
+cmd.remove("solvent")
+cmd.remove("resn HOH")
+cmd.remove("hetatm")
+
 save 01_${PDB}.pdb
 EOF
 
