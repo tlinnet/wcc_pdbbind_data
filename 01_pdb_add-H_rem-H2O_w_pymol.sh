@@ -50,7 +50,7 @@ load ${PDB}_protein.pdb
 
 #Remove alternates
 cmd.remove("not alt +A")
-#cmd.valence("guess", selection1=${PDB}_protein)
+cmd.valence("guess", selection1='${PDB}_protein')
 
 #Prepare molecules with polar hydrogens:
 cmd.h_add("elem O or elem N or elem S")
