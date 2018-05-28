@@ -30,6 +30,11 @@ echo "WFORCE=$WFORCE, EFORCE=$EFORCE, PDB='$PDB', Leftovers: $@"
 # Exit, if empty PDB id
 [[ -z $PDB ]] && echo "Please provide a PDB id" && exit 1
 
+# Set N
+N=$@
+[[ -z $@ ]] && N="n 3"
+#echo $N
+
 # Exit, if PDB dir does not exist
 CWD=`pwd`
 PDBDIR=${CWD}/pdbbind_v2017_refined/${PDB}
@@ -50,7 +55,7 @@ cd $PDBDIR
 cat <<EOF > $SHFILE
 #!/usr/bin/env bash
 
-rbdock -i ${PDB}_ligand.sdf -o 04_out_${PDB} -r 03_create_rdock_cavity.prm -p dock.prm -n 5 | tee $LOGFILE
+rbdock -i ${PDB}_ligand.sdf -o 04_out_${PDB} -r 03_create_rdock_cavity.prm -p dock.prm -$N | tee $LOGFILE
 
 echo \$SECONDS > $SECFILE
 times > $TIMEFILE

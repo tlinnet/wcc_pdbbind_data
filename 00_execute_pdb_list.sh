@@ -32,6 +32,11 @@ echo "WFORCE=$WFORCE, EFORCE=$EFORCE, PDBFILE='$PDBFILE', Leftovers: $@"
 
 CWD=`pwd`
 
+# Set N
+N=$@
+[[ -z $@ ]] && N="n 3"
+#echo $N
+
 # Run over PDB file
 declare -a PDBARR
 
@@ -57,6 +62,30 @@ while (( ${#PDBARR[@]} > i )); do
     ./01_pdb_add-H_rem-H2O_w_pymol.sh -p $PDB $CMD
     ./02_convert_pdb_to_mol2_w_obabel.sh -p $PDB $CMD
     ./03_create_rDock_cavity.sh -p $PDB $CMD
-    ./04_perform_rdock.sh -p $PDB $CMD
-    ./05_get_rmsd.sh $PDB $CMD
+    ./04_perform_rdock.sh -p $PDB $CMD $N
+    ./05_get_rmsd.sh -p $PDB $CMD
 done
+
+# Now collect the timings
+
+echo ""
+echo "---------------------"
+echo ""
+
+echo "NR,PDB,N,SEC" > ${PDBFILE}.sec
+
+let i=0
+while (( ${#PDBARR[@]} > i )); do
+    PDB=${PDBARR[i++]}
+    PDBDIR=${CWD}/pdbbind_v2017_refined/${PDB}
+
+    # Read the number of poses
+    N=`cat ${PDBDIR}/04_out_${PDB}.sd | grep '$$$$' | wc -l`
+
+    # Read the amount of seconds used on docking
+    read SEC < $PDBDIR/04_create_rdock_cavity.sec
+
+    echo "${i},${PDB},${N},${SEC}" >> ${PDBFILE}.sec
+done
+
+cat ${PDBFILE}.sec
