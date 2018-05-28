@@ -54,9 +54,9 @@ while (( ${#PDBARR[@]} > i )); do
     [[ "$WFORCE $EFORCE" == "0 1" ]] && CMD="-e"
     [[ "$WFORCE $EFORCE" == "1 1" ]] && CMD="-w -e"
 
-    01_pdb_add-H_rem-H2O_w_pymol.sh -p $PDB $CMD
-    02_convert_pdb_to_mol2_w_obabel.sh -p $PDB $CMD
-    03_create_rDock_cavity.sh -p $PDB $CMD
-    04_perform_rdock.sh -p $PDB $CMD
-    05_get_rmsd.sh $PDB $CMD
+    ./01_pdb_add-H_rem-H2O_w_pymol.sh -p $PDB $CMD
+    ./02_convert_pdb_to_mol2_w_obabel.sh -p $PDB $CMD
+    ./03_create_rDock_cavity.sh -p $PDB $CMD
+    ./04_perform_rdock.sh -p $PDB $CMD
+    ./05_get_rmsd.sh $PDB $CMD
 done
