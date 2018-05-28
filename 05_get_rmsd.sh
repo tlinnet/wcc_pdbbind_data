@@ -35,11 +35,10 @@ CWD=`pwd`
 PDBDIR=${CWD}/pdbbind_v2017_refined/${PDB}
 [[ ! -d "$PDBDIR" ]] && echo PDB dir does not exists: $PDBDIR && exit 1
 
-FNAME="04_create_rdock_cavity"
+FNAME="05_get_rmsd"
 SHFILE="${FNAME}.sh"
 LOGFILE="${FNAME}.log"
-SECFILE="${FNAME}.sec"
-TIMEFILE="${FNAME}.time"
+SCOREFILE="${FNAME}.score"
 
 # Write rdock
 function write_rdock_cmd {
@@ -50,11 +49,11 @@ cd $PDBDIR
 cat <<EOF > $SHFILE
 #!/usr/bin/env bash
 
-rbdock -i ${PDB}_ligand.sdf -o 04_out_${PDB} -r 03_create_rdock_cavity.prm -p dock.prm -n 5 | tee $LOGFILE
+# Get best rmsd
+sdrmsd ${PDB}_ligand.sdf 04_out_${PDB}.sd -o 04_out_${PDB}_rmsd.sd | tee $LOGFILE
 
-echo \$SECONDS > $SECFILE
-times > $TIMEFILE
-
+# Create the SCORE and RMSD in a file
+sdreport -cSCORE,RMSD 04_out_${PDB}_rmsd.sd | tee $SCOREFILE
 EOF
 chmod +x $SHFILE
 
@@ -67,7 +66,7 @@ if [ ! -f ${PDBDIR}/${SHFILE} ] || [ "$WFORCE" == "1" ]; then
 fi
 
 # Execute if PDB does not exists
-if [ ! -f ${PDBDIR}/04_out_${PDB}.sd ] || [ "$EFORCE" == "1" ]; then
+if [ ! -f ${PDBDIR}/${SCOREFILE} ] || [ "$EFORCE" == "1" ]; then
     echo "Executing: ${SHFILE}"
     echo ""
     cd $PDBDIR
