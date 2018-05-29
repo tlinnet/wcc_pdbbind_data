@@ -51,11 +51,18 @@ drd ./11_clean_files.sh -p 00_all_pdb.txt
   * Machine type: n1-highcpu-4   (80$/mo)
   * Container: Yes, deploy a container image
   * Container image: tlinnet/rdock
-  * Standard persistent disk: 30 GB
+  * Standard persistent disk: 50 GB
   * Allow HTTP traffic: Yes
   * Allow HTTPS traffic: Yes
   * Management, disks, networking, SSH keys
     * Add from $HOME/.ssh/id_rsa.pub
+  * Preemptibility: On  (Price drops 70% down!)
+  * Startup script (Optional)
+----
+#! /bin/bash
+apt-get update
+apt-get install -y tmux
+----
 
 ## SSH to box
 
@@ -100,7 +107,7 @@ docker rm $(docker ps -a -q)
 Use this alias
 
 ```bash
-alias drd='docker run -ti --rm -p 80:8888 -v "${HOME}/software/wcc_pdbbind_data":/home/jovyan/work --name rdock tlinnet/rdock'
+alias drd='docker run -ti --rm -p 80:8888 -v "${HOME}/wcc_pdbbind_data":/home/jovyan/work --name rdock tlinnet/rdock'
 ```
 
 Then run it
@@ -121,4 +128,42 @@ In a webbrowser, write (without https, just http)
 
 ```bash
 35.195.xxx.xxx/?token=1e82844a251f85aceb6e868e6806d760d9d9b257c77b6348
+```
+
+## Attach to a running Docker
+
+Use this alias
+
+```bash
+alias drd='docker run -ti --rm -p 80:8888 -v "${HOME}/wcc_pdbbind_data":/home/jovyan/work --name rdock tlinnet/rdock'
+```
+
+Then run bash
+
+```bash
+drd bash
+```
+
+Open another terminal
+
+```bash
+ssh $USER@$EXTIP
+
+docker ps
+docker attach rdock
+docker attach f9479cca9e9e
+```
+
+ Ctrl+p, Ctrl+q will turn interactive mode into daemon mode.
+
+## Get data
+
+```bash
+cd $HOME
+git clone https://github.com/tlinnet/wcc_pdbbind_data.git
+sudo chgrp -R 100 wcc_pdbbind_data
+sudo chmod -R g+w wcc_pdbbind_data
+
+# sudo chown -R 1000:100 wcc_pdbbind_data
+#sudo chown -R tlinnet:tlinnet wcc_pdbbind_data
 ```
