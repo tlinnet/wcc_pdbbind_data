@@ -40,7 +40,7 @@ CWD=`pwd`
 PDBDIR=${CWD}/pdbbind_v2017_refined/${PDB}
 [[ ! -d "$PDBDIR" ]] && echo PDB dir does not exists: $PDBDIR && exit 1
 
-FNAME="04_create_rdock_cavity"
+FNAME="04_perform_rdock"
 SHFILE="${FNAME}.sh"
 LOGFILE="${FNAME}.log"
 SECFILE="${FNAME}.sec"

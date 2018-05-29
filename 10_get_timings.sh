@@ -56,9 +56,11 @@ while (( ${#PDBARR[@]} > i )); do
     PDBDIR=${CWD}/pdbbind_v2017_refined/${PDB}
 
     # Read the number of poses
+    [[ ! -f ${PDBDIR}/04_out_${PDB}.sd ]] && continue
     N=`cat ${PDBDIR}/04_out_${PDB}.sd | grep '$$$$' | wc -l`
 
     # Read the amount of seconds used on docking
+    [[ ! -f $PDBDIR/04_create_rdock_cavity.sec ]] && continue
     read SEC < $PDBDIR/04_create_rdock_cavity.sec
 
     echo "${i},${PDB},${N},${SEC}" >> ${PDBFILE}.sec

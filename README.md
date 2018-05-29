@@ -6,7 +6,7 @@ Make alias to Docker. Point to the folder where the pdbbind data is.
 alias drd='docker run -ti --rm -p 8888:8888 -v "${HOME}/software/wcc_pdbbind_data":/home/jovyan/work --name rdock $USER/rdock'
 ```
 
-Then execute for list with 5 PDB
+## Then write commands for list with 5 PDB
 
 ```bash
 # Make standard with 3 runs
@@ -19,7 +19,14 @@ drd ./00_execute_pdb_list.sh -p 00_5_pdb.txt n 5
 drd ./00_execute_pdb_list.sh -p 00_5_pdb.txt -w -e n 5
 ```
 
-execute commands with parallel
+## Then execute commands with GNU parallel
+
 ```bash
 drd ./commands_run.sh
+```
+
+## Get the timings
+
+```bash
+drd ./10_get_timings.sh -p 00_all_pdb.txt 
 ```
