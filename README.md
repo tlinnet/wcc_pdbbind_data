@@ -33,3 +33,7 @@ drd ./10_get_timings.sh -p 00_all_pdb.txt
 
 ## Clean up files
 
+```bash
+drd ./11_clean_files.sh -p 00_5_pdb.txt
+drd ./11_clean_files.sh -p 00_all_pdb.txt
+```
