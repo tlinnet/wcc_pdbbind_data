@@ -25,7 +25,7 @@ done
 shift $((OPTIND-1))
 [ "${1:-}" = "--" ] && shift
 
-echo "WFORCE=$WFORCE, EFORCE=$EFORCE, PDBFILE='$PDBFILE', Leftovers: $@"
+#echo "WFORCE=$WFORCE, EFORCE=$EFORCE, PDBFILE='$PDBFILE', Leftovers: $@"
 
 # Exit, if PDB file not exists
 [[ ! -f $PDBFILE ]] && echo "Please provide a file of PDB ids" && exit 1
@@ -43,11 +43,6 @@ while IFS=$'\n' read -r line_data; do
 done < $PDBFILE
 
 # Now collect the timings
-
-echo ""
-echo "---------------------"
-echo ""
-
 echo "NR,PDB,N,SEC" > ${PDBFILE}.sec
 
 let i=0
