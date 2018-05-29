@@ -48,7 +48,11 @@ while IFS=$'\n' read -r line_data; do
 done < $PDBFILE
 
 # Explicitly report array content.
-rm -f commands.txt
+rm -f commands_1.txt
+rm -f commands_2.txt
+rm -f commands_3.txt
+rm -f commands_4.txt
+rm -f commands_5.txt
 
 let i=0
 while (( ${#PDBARR[@]} > i )); do
@@ -61,14 +65,14 @@ while (( ${#PDBARR[@]} > i )); do
     [[ "$WFORCE $EFORCE" == "0 1" ]] && CMD="-e"
     [[ "$WFORCE $EFORCE" == "1 1" ]] && CMD="-w -e"
 
-    echo "./01_pdb_add-H_rem-H2O_w_pymol.sh -p $PDB $CMD" >> commands.txt
-    echo "./02_convert_pdb_to_mol2_w_obabel.sh -p $PDB $CMD" >> commands.txt
-    echo "./03_create_rDock_cavity.sh -p $PDB $CMD" >> commands.txt
-    echo "./04_perform_rdock.sh -p $PDB $CMD $N" >> commands.txt
-    echo "./05_get_rmsd.sh -p $PDB $CMD" >> commands.txt
+    echo "./01_pdb_add-H_rem-H2O_w_pymol.sh -p $PDB $CMD" >> commands_1.txt
+    echo "./02_convert_pdb_to_mol2_w_obabel.sh -p $PDB $CMD" >> commands_2.txt
+    echo "./03_create_rDock_cavity.sh -p $PDB $CMD" >> commands_3.txt
+    echo "./04_perform_rdock.sh -p $PDB $CMD $N" >> commands_4.txt
+    echo "./05_get_rmsd.sh -p $PDB $CMD" >> commands_5.txt
     
 done
 echo ""
-echo "All commands are now in commands.txt"
+echo "All commands are now in commands_x.txt"
 # https://www.msi.umn.edu/support/faq/how-can-i-use-gnu-parallel-run-lot-commands-parallel
-echo "parallel --jobs 2 < commands.txt"
+echo "parallel < commands_1.txt"
