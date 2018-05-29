@@ -84,7 +84,7 @@ if [ ! -f ${PDBDIR}/01_${PDB}.pdb ] || [ "$EFORCE" == "1" ]; then
     echo "Executing: ${SHFILE}"
     echo ""
     cd $PDBDIR
-    ./${SHFILE}
+    bash ${SHFILE}
     cd $CWD
 fi
 

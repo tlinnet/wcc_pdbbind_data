@@ -70,7 +70,7 @@ if [ ! -f ${PDBDIR}/${SCOREFILE} ] || [ "$EFORCE" == "1" ]; then
     echo "Executing: ${SHFILE}"
     echo ""
     cd $PDBDIR
-    ./${SHFILE}
+    bash ${SHFILE}
     cd $CWD
 fi
 

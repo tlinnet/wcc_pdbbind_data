@@ -112,7 +112,7 @@ if [ ! -f ${PDBDIR}/${FNAME}.as ] || [ "$EFORCE" == "1" ]; then
     echo "Executing: ${SHFILE}"
     echo ""
     cd $PDBDIR
-    ./${SHFILE}
+    bash ${SHFILE}
     cd $CWD
 fi
 

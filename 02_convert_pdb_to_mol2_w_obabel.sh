@@ -72,7 +72,7 @@ if [ ! -f ${PDBDIR}/02_${PDB}.mol2 ] || [ "$EFORCE" == "1" ]; then
     echo "Executing: ${SHFILE}"
     echo ""
     cd $PDBDIR
-    ./${SHFILE}
+    bash ${SHFILE}
     cd $CWD
 fi
 
