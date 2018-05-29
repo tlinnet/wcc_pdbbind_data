@@ -10,32 +10,32 @@ alias drd='docker run -ti --rm -p 8888:8888 -v "${HOME}/software/wcc_pdbbind_dat
 
 ```bash
 # Make standard with 3 runs
-drd ./00_execute_pdb_list.sh -p 00_5_pdb.txt
+drd bash 00_execute_pdb_list.sh -p 00_5_pdb.txt
 
 # With 5 runs 
-drd ./00_execute_pdb_list.sh -p 00_5_pdb.txt n 5
+drd bash 00_execute_pdb_list.sh -p 00_5_pdb.txt n 5
 
 # With 5 runs, and force write -w and force execute -w
-drd ./00_execute_pdb_list.sh -p 00_5_pdb.txt -w -e n 5
+drd bash 00_execute_pdb_list.sh -p 00_5_pdb.txt -w -e n 5
 ```
 
 ## Then execute commands with GNU parallel
 
 ```bash
-drd ./commands_run.sh
+drd bash commands_run.sh
 ```
 
 ## Get the timings
 
 ```bash
-drd ./10_get_timings.sh -p 00_all_pdb.txt 
+drd bash 10_get_timings.sh -p 00_all_pdb.txt 
 ```
 
 ## Clean up files
 
 ```bash
-drd ./11_clean_files.sh -p 00_5_pdb.txt
-drd ./11_clean_files.sh -p 00_all_pdb.txt
+drd bash 11_clean_files.sh -p 00_5_pdb.txt
+drd bash 11_clean_files.sh -p 00_all_pdb.txt
 ```
 
 # Run docker image on google cloud
@@ -166,4 +166,12 @@ sudo chmod -R g+w wcc_pdbbind_data
 
 # sudo chown -R 1000:100 wcc_pdbbind_data
 #sudo chown -R tlinnet:tlinnet wcc_pdbbind_data
+```
+
+Run it 
+
+```bash
+drd bash 00_execute_pdb_list.sh -p 00_5_pdb.txt n 5
+
+drd bash commands_run.sh
 ```
