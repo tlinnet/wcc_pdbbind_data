@@ -18,3 +18,8 @@ drd ./00_execute_pdb_list.sh -p 00_5_pdb.txt n 5
 # With 5 runs, and force write -w and force execute -w
 drd ./00_execute_pdb_list.sh -p 00_5_pdb.txt -w -e n 5
 ```
+
+execute commands with parallel
+```bash
+drd ./commands_run.sh
+```

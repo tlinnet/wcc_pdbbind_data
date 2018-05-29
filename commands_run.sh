@@ -1,0 +1,1 @@
+parallel < commands.txt
