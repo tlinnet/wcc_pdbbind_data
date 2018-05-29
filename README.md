@@ -30,3 +30,6 @@ drd ./commands_run.sh
 ```bash
 drd ./10_get_timings.sh -p 00_all_pdb.txt 
 ```
+
+## Clean up files
+

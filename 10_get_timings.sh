@@ -55,8 +55,8 @@ while (( ${#PDBARR[@]} > i )); do
     N=`cat ${PDBDIR}/04_out_${PDB}.sd | grep '$$$$' | wc -l`
 
     # Read the amount of seconds used on docking
-    [[ ! -f $PDBDIR/04_create_rdock_cavity.sec ]] && continue
-    read SEC < $PDBDIR/04_create_rdock_cavity.sec
+    [[ ! -f $PDBDIR/04_perform_rdock.sec ]] && continue
+    read SEC < $PDBDIR/04_perform_rdock.sec
 
     echo "${i},${PDB},${N},${SEC}" >> ${PDBFILE}.sec
 done
